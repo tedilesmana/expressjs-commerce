@@ -1,0 +1,27 @@
+<%- include('../layout/header') %>
+<%- include('../layout/navbar') %>
+
+<!-- Default form contact -->
+<form class="text-center border border-light p-5 mt-5" action="/admin/add_page" method="post">
+    <a href="/admin" class="float-left btn btn-sm btn-success">Back to Home</a>
+    <p class="h4 mb-4">Add Page</p>
+
+    <!-- Title -->
+    <input type="text" id="defaultContactFormName" class="form-control mb-4" value="<%- title %>" placeholder="Enter Title" name="title">
+
+    <!-- Link -->
+    <input type="text" id="defaultContactFormEmail" class="form-control mb-4" value="<%- link %>" placeholder="Enter Link" name="link">
+
+    <!-- Message -->
+    <div class="form-group">
+        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Content" name="content"><%- content %></textarea>
+    </div>
+
+    <!-- Send button -->
+    <button class="btn btn-info btn-block" type="submit">Send</button>
+
+</form>
+<!-- Default form contact -->
+
+<%- include('../layout/footer') %>
+
