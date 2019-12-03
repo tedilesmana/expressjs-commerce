@@ -1,27 +1,28 @@
-<%- include('../layout/header') %>
-<%- include('../layout/navbar') %>
+<%- include('../template/admin_header') %>
+<%- include('../template/admin_navbar') %>
 
 <!-- Default form contact -->
-<form class="text-center border border-light p-5 mt-5" action="/admin/add_page" method="post">
-    <a href="/admin" class="float-left btn btn-sm btn-success">Back to Home</a>
-    <p class="h4 mb-4">Add Page</p>
+<div class="card m-5">
+    <div class="col-md-12 text-center"><h3 class="font-weight-bold mt-4 text-white bg-dark rounded p-3">ADD NEW PAGE</h3></div>
+    <form class="text-center border border-light p-5" action="/admin/add_page" method="post">
+        <a href="/admin/pages" class="float-left btn btn-sm btn-success mb-3">Back to all pages</a>
+        <!-- Title -->
+        <input type="text" id="defaultContactFormName" class="form-control mb-4" value="<%- title %>" placeholder="Enter Title" name="title">
 
-    <!-- Title -->
-    <input type="text" id="defaultContactFormName" class="form-control mb-4" value="<%- title %>" placeholder="Enter Title" name="title">
+        <!-- Link -->
+        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" value="<%- link %>" placeholder="Enter Link" name="link">
 
-    <!-- Link -->
-    <input type="text" id="defaultContactFormEmail" class="form-control mb-4" value="<%- link %>" placeholder="Enter Link" name="link">
+        <!-- Message -->
+        <div class="form-group">
+            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Content" name="content"><%- content %></textarea>
+        </div>
 
-    <!-- Message -->
-    <div class="form-group">
-        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Content" name="content"><%- content %></textarea>
-    </div>
+        <!-- Send button -->
+        <button class="btn btn-info" type="submit">Send</button>
 
-    <!-- Send button -->
-    <button class="btn btn-info btn-block" type="submit">Send</button>
-
-</form>
+    </form>
+</div>
 <!-- Default form contact -->
 
-<%- include('../layout/footer') %>
+<%- include('../template/admin_footer') %>
 
