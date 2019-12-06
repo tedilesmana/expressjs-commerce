@@ -3,36 +3,44 @@
 
 <div class="container mt-3">
   <a href="add_page" class="btn btn-sm btn-outline-success mb-2">Add Pages</a>
-  <table class="table">
+  <table class="table sorting">
     <thead class="black white-text">
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Nama Page</th>
-        <th scope="col">URL/Link</th>
-        <th scope="col">Content</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
+      
+        <% pages.forEach(function(page){ %>
+          <tr id="id_<%= page._id %>" class="<%= page.link %>">
+            <td><%= page._id %></td>
+            <td><%= page.title %></td>
+            <td><a href="/admin/edit-page/<%= page._id %>" class="edit">edit</a></td>
+            <% if (page.link == "home") { %>
+              <td></td>
+            <% } else { %>
+              <td><a href="/admin/delete-page/<%= page._id %>" class="delete confirmDeletion">delete</a></td>
+            <% } %>
+          </tr> 
+        <% }); %>
+        
     </tbody>
   </table>
 </div>
+
+<script type="text/javascript">
+  $('tbody').sortable({
+      items: "tr:not('.home')",
+      placeholder: "ui-state-hightlight",
+      update: function(){
+        var id = $('tbody').sortable('serialize');
+        var url = "/admin/reorder-page";
+        $.post(url, id);
+      }
+  });
+</script>
 
 <%- include('../template/admin_footer') %>

@@ -1,0 +1,34 @@
+<%- include('../template/admin_header') %>
+<%- include('../template/admin_navbar') %>
+
+<div class="container mt-3">
+  <a href="categories/add_categories" class="btn btn-sm btn-outline-success mb-2">Add Categories</a>
+  <table class="table sorting">
+    <thead class="black white-text">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nama Page</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <% categories.forEach(function(cat){ %>
+          <tr id="id_<%= cat._id %>" class="<%= cat.link %>">
+            <td><%= cat._id %></td>
+            <td><%= cat.title %></td>
+            <td><a href="/admin/edit-cat/<%= cat._id %>" class="edit">edit</a></td>
+            <% if (cat.link == "home") { %>
+              <td></td>
+            <% } else { %>
+              <td><a href="/admin/delete-cat/<%= cat._id %>" class="delete confirmDeletion">delete</a></td>
+            <% } %>
+          </tr> 
+        <% }); %>
+        
+    </tbody>
+  </table>
+</div>
+
+<%- include('../template/admin_footer') %>

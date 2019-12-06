@@ -3,18 +3,19 @@
 
 <!-- Default form contact -->
 <div class="card m-5">
+
     <div class="col-md-12 text-center"><h3 class="font-weight-bold mt-4 text-white bg-dark rounded p-3">ADD NEW PAGE</h3></div>
     <form class="text-center border border-light p-5" action="/admin/add_page" method="post">
         <a href="/admin/pages" class="float-left btn btn-sm btn-success mb-3">Back to all pages</a>
         <!-- Title -->
-        <input type="text" id="defaultContactFormName" class="form-control mb-4" value="<%- title %>" placeholder="Enter Title" name="title">
+        <input type="text" id="defaultContactFormName" class="form-control mb-4" value="<%= title %>" placeholder="Enter Title" name="title">
 
         <!-- Link -->
-        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" value="<%- link %>" placeholder="Enter Link" name="link">
+        <input type="text" id="defaultContactFormEmail" class="form-control mb-4" value="<%= link %>" placeholder="Enter Link" name="link">
 
         <!-- Message -->
         <div class="form-group">
-            <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Content" name="content"><%- content %></textarea>
+            <textarea id="editor" rows="20" class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Content" name="content"><%= content %></textarea>
         </div>
 
         <!-- Send button -->
@@ -23,6 +24,15 @@
     </form>
 </div>
 <!-- Default form contact -->
+<% if(errors) { %>
+
+      <% errors.forEach(function(error){ %>
+        <span class="btn btn-block btn-danger text-white col-md-12 text-center mt-3">
+            <%= error.msg %>
+        </span>
+      <% }); %>
+     
+<% } %>
 
 <%- include('../template/admin_footer') %>
 

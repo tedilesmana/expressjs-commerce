@@ -9,15 +9,23 @@
   "author": "tedilesmana",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.6",
     "express-messages": "^1.0.1",
     "express-session": "^1.17.0",
     "express-validator": "^6.3.0",
+    "fs-extra": "^8.1.0",
+    "mkdirp": "^0.5.1",
     "mongodb": "^3.3.5",
-    "mongoose": "^5.7.13"
+    "mongoose": "^5.7.13",
+    "mv": "^2.1.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "resize-img": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^6.7.2",
