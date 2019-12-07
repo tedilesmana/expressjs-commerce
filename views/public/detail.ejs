@@ -10,13 +10,30 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+          <img src="/product_images/<%= products.images %>"  height="350" class="card-img-top"
+                  alt="">
 
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
         <div class="col-md-6 mb-4">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        
 
           <!--Content-->
           <div class="p-4">
@@ -34,29 +51,44 @@
             </div>
 
             <p class="lead">
-              <span class="mr-1">
-                <del>$200</del>
-              </span>
-              <span>$100</span>
+              <b><%= products.title %></b>
+              <div>Harga : <b>Rp.<%= products.price %></b></div>
             </p>
 
             <p class="lead font-weight-bold">Description</p>
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa
-              sint voluptatibus!
-              Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
+            <p><%= products.desc %></p>
 
-            <form class="d-flex justify-content-left">
+            <div class="d-flex justify-content-left">
               <!-- Default input -->
               <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+              <a class="btn btn-primary btn-md my-0 p" href="/cart/page/add/<%= products._id %>">Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
-              </button>
+              </a>
 
-            </form>
+            </div>
 
           </div>
           <!--Content-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         </div>
         <!--Grid column-->

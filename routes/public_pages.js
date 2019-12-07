@@ -1,29 +1,40 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
+var Page = require("../models/pages");
+var Product = require("../models/products");
 
-router.get('/', function(req, res) {
-	res.render('public/home', {
+router.get("/:link", function(req, res) {
+	var link = req.params.link;
+
+	res.render("public/" + link, {
+		title: link
 	});
 });
 
-router.get('/login', function(req, res) {
-	res.render('public/login', {
-	});
+router.get("/", function(req, res) {
+	Product.find({})
+		.sort({ sorting: 1 })
+		.exec(function(err, products) {
+			res.render("public/home", {
+				products: products
+			});
+		});
 });
 
-router.get('/register', function(req, res) {
-	res.render('public/register', {
-	});
+router.get("/login", function(req, res) {
+	res.render("public/login", {});
 });
 
-router.get('/cart', function(req, res) {
-	res.render('public/cart', {
-	});
+router.get("/register", function(req, res) {
+	res.render("public/register", {});
 });
 
-router.get('/checkout', function(req, res) {
-	res.render('public/checkout', {
-	});
+router.get("/cart", function(req, res) {
+	res.render("public/cart", {});
+});
+
+router.get("/checkout", function(req, res) {
+	res.render("public/checkout", {});
 });
 
 // router.get('/produk', function(req, res) {

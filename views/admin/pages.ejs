@@ -2,7 +2,7 @@
 <%- include('../template/admin_navbar') %>
 
 <div class="container mt-3">
-  <a href="add_page" class="btn btn-sm btn-outline-success mb-2">Add Pages</a>
+  <a href="/admin/page/add_page" class="btn btn-sm btn-outline-success mb-2">Add Pages</a>
   <table class="table sorting">
     <thead class="black white-text">
       <tr>
@@ -18,11 +18,11 @@
           <tr id="id_<%= page._id %>" class="<%= page.link %>">
             <td><%= page._id %></td>
             <td><%= page.title %></td>
-            <td><a href="/admin/edit-page/<%= page._id %>" class="edit">edit</a></td>
+            <td><a href="/admin/page/edit-page/<%= page._id %>" class="edit">edit</a></td>
             <% if (page.link == "home") { %>
               <td></td>
             <% } else { %>
-              <td><a href="/admin/delete-page/<%= page._id %>" class="delete confirmDeletion">delete</a></td>
+              <td><a href="/admin/page/delete-page/<%= page._id %>" class="delete confirmDeletion">delete</a></td>
             <% } %>
           </tr> 
         <% }); %>

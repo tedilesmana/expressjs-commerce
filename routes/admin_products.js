@@ -19,12 +19,12 @@ router.get("/", function(req, res) {
 	var count;
 
 	Product.count(function(err, c) {
-		Count = c;
+		count = c;
 	});
 
-	Product.find(function(err, product) {
+	Product.find(function(err, products) {
 		res.render("admin/products", {
-			product: product,
+			products: products,
 			count: count
 		});
 	});
@@ -73,11 +73,11 @@ router.post(
 		const errors = validationResult(req);
 		// console.log(req.files.image.name);
 		// var imageFile =	typeof req.files.image !== "undefined" ? req.files.image.name : "";
-		if (req.body.noimage) {
-			var imageFile = "";
-		} else {
-			var imageFile = req.files.image.name;
-		}
+		// if (req.body.image) {
+		// 	var imageFile = "";
+		// } else {
+		// 	var imageFile = req.files.image.name;
+		// }
 
 		// check("title", "Title harus di isi").notEmpty();
 		// check("desc", "Title harus di isi").notEmpty();
@@ -85,10 +85,11 @@ router.post(
 		// check("image", "Title harus di isi").isImage(imageFile);
 
 		var title = req.body.title;
-		var link = req.body.link;
+		var link = req.body.categories;
 		var desc = req.body.desc;
 		var price = req.body.price;
 		var categories = req.body.categories;
+		var imageFile = req.files.image.name;
 
 		// var errors = req.validationErrors();
 
@@ -121,7 +122,7 @@ router.post(
 						desc: desc,
 						categories: categories,
 						price: price,
-						image: imageFile
+						images: imageFile
 					});
 
 					product.save(function(err) {
@@ -129,17 +130,16 @@ router.post(
 							return console.log(err);
 						}
 
-						mkdirp("public/product_images/" + product._id, function(
-							err
-						) {
-							return console.log(err);
-						});
+						// mkdirp("public/product_images/" + product._id, function(
+						// 	err
+						// ) {
+						// 	return console.log(err);
+						// });
 
 						if (imageFile != "") {
 							var productImage = req.files.image;
 							var path =
-								"public/product_images/" +
-								product._id +
+								"public/product_images/" + 
 								"/" +
 								imageFile;
 							console.log(productImage);
@@ -150,7 +150,7 @@ router.post(
 						}
 
 						req.flash("success", "Product Berhasil di tambahkan");
-						res.redirect("/admin");
+						res.redirect("/admin/products/add_product");
 					});
 				}
 			});

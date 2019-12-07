@@ -1,0 +1,79 @@
+<%- include('../template/header') %>
+<%- include('../template/navbar') %>
+
+<style>
+body
+{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.fb-profile img.fb-image-lg{
+    z-index: 0;
+    width: 100%;  
+    margin-bottom: 10px;
+}
+
+.fb-image-profile
+{
+    margin: -90px 10px 0px 50px;
+    z-index: 9;
+    width: 20%; 
+}
+
+@media (max-width:768px)
+{
+    
+.fb-profile-text>h1{
+    font-weight: 700;
+    font-size:16px;
+}
+
+.fb-image-profile
+{
+    margin: -45px 10px 0px 25px;
+    z-index: 9;
+    width: 20%; 
+}
+
+.card {
+    padding-top: 20px;
+    margin: 10px 0 20px 0;
+    background-color: rgba(214, 224, 226, 0.2);
+    border-top-width: 0;
+    border-bottom-width: 2px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+</style>
+
+<div class="container mt-5">
+    <div class="fb-profile">
+        <img align="left" class="fb-image-lg" src="https://mdbootstrap.com/img/Photos/Slides/img%20(136).jpg" alt="Profile image example"/>
+        <img align="left" class="fb-image-profile thumbnail" src="https://mdbootstrap.com/img/Photos/Slides/img%20(148).jpg" height="200" alt="Profile image example"/>
+        <div class="fb-profile-text">
+            <h1>Eli Macy</h1>
+            <p>Girls just wanna go fun.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-12 col-sm-12">
+
+            <div class="card p-5">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi quam dolor, rerum expedita tempore est sunt explicabo nesciunt ex. Eaque modi, quaerat reiciendis atque facilis tempora iure voluptate natus similique.</p>
+            </div>
+
+     </div>
+  </div>
+</div>
+
+<%- include('../template/footer') %>

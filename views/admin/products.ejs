@@ -3,7 +3,6 @@
 
 <div class="container mt-3">
   <a href="/admin/products/add_product" class="btn btn-sm btn-outline-success mb-2">Adds Product Data</a>
-
 <% if (count > 0) { %>
     
   <table class="table sorting">
@@ -21,14 +20,14 @@
       
         <% products.forEach(function(pd){ %>
           <tr id="id_<%= pd._id %>" class="<%= pd.link %>">
-            <td><%= pd.product %></td>
+            <td><%= pd.title %></td>
             <td><%= pd.price %></td>
-            <td><%= pd.categori %></td>
+            <td><%= pd.categories %></td>
             <td>
                 <% if (pd.image == "") { %>
                   <img src="/images/noimage.png" alt="" id="noimage">
                 <% }else{ %>
-                    <img src="/product_images/<%= pd._id %>/<%= pd.images %>" alt="" id="image">
+                    <img src="/product_images/<%= pd.images %>" width="150" height="150" alt="" id="image">
                 <% } %>
             </td>
             <td><a href="/admin/edit-product/<%= pd._id %>" class="edit">edit</a></td>
