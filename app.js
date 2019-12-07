@@ -125,6 +125,8 @@ var products_page = require("./routes/products_page.js");
 
 var categori_page = require("./routes/categori_page.js");
 
+var users_page = require("./routes/users_page.js");
+
 var cart_page = require("./routes/cart_page.js");
 
 var admin_pages = require("./routes/admin_pages.js");
@@ -138,6 +140,8 @@ app.use("/", public_pages);
 app.use("/products/page", products_page);
 
 app.use("/categori/page", categori_page);
+
+app.use("/users/page", users_page);
 
 app.use("/cart/page", cart_page);
 

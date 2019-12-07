@@ -4,7 +4,7 @@
 <div class="col-md-12 m-5 ">
     <div class="row">
     <div class="card col-md-4 offset-md-4">
-        <form class="text-center p-5" action="#!">
+        <form class="text-center p-5" action="/users/page/login" method="post">
             <p class="h4 mb-4">Sign in</p>
 
             <!-- Email -->
@@ -13,6 +13,7 @@
                 id="defaultLoginFormEmail"
                 class="form-control mb-4"
                 placeholder="E-mail"
+                name="email"
             />
 
             <!-- Password -->
@@ -21,6 +22,7 @@
                 id="defaultLoginFormPassword"
                 class="form-control mb-4"
                 placeholder="Password"
+                name="pass"
             />
 
             <div class="d-flex justify-content-around">
@@ -55,7 +57,7 @@
 
             <p>
                 Not a member?
-                <a href="">Register</a>
+                <a href="/users/page/register">Register</a>
             </p>
 
             <!-- Social login -->

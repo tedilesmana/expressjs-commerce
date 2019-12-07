@@ -64,4 +64,38 @@ router.get('/shoping-cart', function(req, res){
 	})
 })
 
+router.get('/update/:link', function(req, res){
+	var link = req.params.link;
+	var cart = req.session.cart;
+	var action = req.query.action;
+
+	for (var i = 0; i < cart.length; i++){
+		if (cart[i].title == link) {
+			switch(action){
+				case "add":
+					cart[i].qty++;
+					break;
+				case "remove":
+					cart[i].qty--;
+					if (cart[i].qty < 1) {
+						cart.splice(i, 1);
+					}
+					break;
+				case "clear":
+					cart.splice(i, 1);
+					if (cart.length == 0) {
+						delete req.session.cart;
+					}
+					break;
+				default:
+					console.log('perubahan data gagal');
+					break;
+			}
+			break;
+		}
+	}
+	req.flash('success', 'Produk berhasil di tambahkan');
+	res.redirect('/cart/page/shoping-cart');
+})
+
 module.exports = router;

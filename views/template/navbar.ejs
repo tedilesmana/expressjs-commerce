@@ -8,12 +8,12 @@
 
   <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item mt-1 mr-3">
-        <a class="nav-link waves-effect waves-light" href="/register">
+        <a class="nav-link waves-effect waves-light" href="/users/page/register">
           Register
         </a>
       </li>
       <li class="nav-item mt-1">
-        <a class="nav-link waves-effect waves-light" href="/login">
+        <a class="nav-link waves-effect waves-light" href="/users/page/login">
           Login
         </a>
       </li>
@@ -60,7 +60,14 @@
       <li class="nav-item mt-1">
         <a class="nav-link waves-effect waves-light" href="/cart/page/shoping-cart">
           <i class="fas fa-shopping-basket"><span class="d-block rounded-circle bg-danger text-white d-flex float-right justify-content-center align-items-center" style="top: -10px; position: relative; height: 20px; width: 20px;"><span class="small font-weight-bold">
-<%= countAll %>
+
+<% if (typeof cart == 'undefined') { %>
+  0
+<% }else{ %>
+  <%= countAll %>
+<% } %>
+
+
         </span></span></i>
         </a>
       </li>
