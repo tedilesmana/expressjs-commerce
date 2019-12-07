@@ -10,6 +10,7 @@ var fileUpload = require("express-fileupload");
 var mv = require("mv");
 var Page = require("./models/pages");
 var Categori = require("./models/categories");
+var cookieParser = require("cookie-parser");
 
 mongoose.connect(config.database);
 var db = mongoose.connection;
@@ -28,15 +29,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-// express session
-app.use(
-	session({
-		secret: "keyboard cat",
-		resave: false,
-		saveUninitialized: true,
-		cookie: { secure: false, maxAge: 60000 }
-	})
-);
+//express session
+var sess = {
+	secret: "mySecret",
+	cookie: { token: false, maxAge: 60000000, httOnly: false },
+	saveUninitialized: true,
+	token: '1354658af88b9417d3c268dd3c22eae4',
+	resave: false
+};
+
+app.use(session(sess));
+// app.use(
+// 	session({
+// 		secret: "keyboard cat",
+// 		resave: false,
+// 		saveUninitialized: true,
+// 		cookie: { secure: true, maxAge: 60000 }
+// 	})
+// );
 
 // app.use(validation({
 // 	customValidator: {
@@ -58,6 +68,8 @@ app.use(
 // 	}
 // }));
 
+app.use(cookieParser());
+
 //express message
 app.use(require("connect-flash")());
 app.use(function(req, res, next) {
@@ -78,22 +90,32 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(fileUpload());
 // app.use(mv());
 
-// app.get("*", function(req, res, next) {
-// 	res.locals.cart = req.session.cart;
-	// var cart = req.session.cart;
+app.get("*", function(req, res, next) {
+	res.locals.cart = req.session.cart;
+	var cart = req.session.cart;
+
+	var counts = 0;
+
+	if (typeof cart == "undefined") {
+		counts = 0;
+	}else{
+		counts = cart.length;
+	}
+	res.locals.countAll = counts;
+	// var qty = 0;
 
 	// if (typeof cart == "undefined") {
 	// 	qty = 0;
 	// } else {
-	// 	var qty = 0;
 	// 	for (var i = 0; i < cart.length; i++) {
 	// 		qty = qty + cart[i].qty;
+	// 		console.log(qty);
 	// 	}
 	// }
 
 	// res.locals.countQty = qty;
-// 	next();
-// });
+	next();
+});
 
 var page = require("./models/pages.js");
 
