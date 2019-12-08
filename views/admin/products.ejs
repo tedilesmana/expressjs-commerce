@@ -34,7 +34,7 @@
             <% if (pd.link == "home") { %>
               <td></td>
             <% } else { %>
-              <td><a href="/admin/delete-product/<%= pd._id %>" class="delete confirmDeletion">delete</a></td>
+              <td><a href="/admin/products/delete-product/<%= pd._id %>?action=<%= pd.images %>" class="delete confirmDeletion">delete</a></td>
             <% } %>
           </tr> 
         <% }); %>

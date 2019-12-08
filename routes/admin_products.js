@@ -11,7 +11,7 @@ var router = express.Router();
 var Product = require("../models/products");
 var Categories = require("../models/categories");
 var fileUpload = require("express-fileupload");
-var mv = require('mv');
+var mv = require("mv");
 // ...rest of the initial code omitted for simplicity.
 const { check, validationResult } = require("express-validator");
 
@@ -139,9 +139,7 @@ router.post(
 						if (imageFile != "") {
 							var productImage = req.files.image;
 							var path =
-								"public/product_images/" + 
-								"/" +
-								imageFile;
+								"public/product_images/" + "/" + imageFile;
 							console.log(productImage);
 
 							productImage.mv(path, function(err) {
@@ -157,5 +155,25 @@ router.post(
 		}
 	}
 );
+
+router.get("/delete-product/:id", function(req, res) {
+	var id = req.params.id;
+	var image = req.query.action;
+	var path = "public/product_images/" + image;
+
+	fs.remove(path, function(err) {
+		if (err) {
+			return console.log('err');
+		} else {
+			Product.findByIdAndRemove(id, function(err) {
+				if (err) {
+					return console.log(err);
+				}
+			});
+			req.flash("success", "Product berhasil di hapus");
+			res.redirect("/");
+		}
+	});
+});
 
 module.exports = router;
