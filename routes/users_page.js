@@ -112,33 +112,13 @@ router.post(
 	}
 );
 
-router.post(
-	"/login",
-	[
-		body("name", "Mohon isi data name dengan benar")
-			// .isEmail()
-			// .normalizeEmail(),
-			.not()
-			.isEmpty()
-			.trim()
-			.escape(),
-		body("username", "Mohon isi data content dengan benar")
-			// .isEmail()
-			// .normalizeEmail(),
-			.not()
-			.isEmpty()
-			.trim()
-			.escape(),
-		body("pass", "Mohon isi data link dengan benar")
-			.not()
-			.isEmpty()
-			.trim()
-			.escape(),
-		sanitizeBody("notifyOnReply").toBoolean()
-	],
-	(req, res) => {
-		
-	}
-);
+router.post("/login", function(req, res, next){
+	console.log(req.user);
+	passport.authenticate("local", {
+		successRedirect: "/",
+		failureRedirect: "/users/page/login",
+		failureFlash: true
+	})(req, res, next);
+});
 
 module.exports = router;

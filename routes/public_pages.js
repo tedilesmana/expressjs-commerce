@@ -16,7 +16,7 @@ router.get("/", function(req, res) {
 		.sort({ sorting: 1 })
 		.exec(function(err, products) {
 			res.render("public/home", {
-				products: products
+				products: products,
 			});
 		});
 });

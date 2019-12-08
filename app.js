@@ -11,6 +11,7 @@ var mv = require("mv");
 var Page = require("./models/pages");
 var Categori = require("./models/categories");
 var cookieParser = require("cookie-parser");
+var passport = require("passport");
 
 mongoose.connect(config.database);
 var db = mongoose.connection;
@@ -30,6 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //express session
+app.use(cookieParser('mySecret'));
 var sess = {
 	secret: "mySecret",
 	cookie: { token: false, maxAge: 60000000, httOnly: false },
@@ -39,6 +41,11 @@ var sess = {
 };
 
 app.use(session(sess));
+
+require('./config/passport')(passport);
+
+app.use(passport.initialize());
+app.use(passport.session());
 // app.use(
 // 	session({
 // 		secret: "keyboard cat",
@@ -94,6 +101,10 @@ app.get("*", function(req, res, next) {
 	res.locals.cart = req.session.cart;
 	var cart = req.session.cart;
 
+	var userLogin = req.user;
+	user = userLogin;
+	res.locals.user = user;
+
 	var counts = 0;
 
 	if (typeof cart == "undefined") {
@@ -101,7 +112,9 @@ app.get("*", function(req, res, next) {
 	}else{
 		counts = cart.length;
 	}
+
 	res.locals.countAll = counts;
+
 	// var qty = 0;
 
 	// if (typeof cart == "undefined") {
