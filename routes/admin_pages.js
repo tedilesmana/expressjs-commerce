@@ -128,7 +128,7 @@ router.post(
 			});
 		}
 	}
-);
+ );
 
 router.post("/reorder-pages", function(req, res) {
 	var ids = req.body["id[]"];
@@ -181,9 +181,63 @@ router.get('/delete-page/:id', function(req, res){
 		});
 
 		req.flash('success', 'Page berhasil di hapus');
-		res.redirect('/admin/pages');
+		res.redirect('/admin/page');
 
 	});
 });
 
+router.post(
+	"/update_page",
+	[
+		body("title", "Mohon isi data title dengan benar")
+			// .isEmail()
+			// .normalizeEmail(),
+			.not()
+			.isEmpty()
+			.trim()
+			.escape(),
+		body("content", "Mohon isi data content dengan benar")
+			// .isEmail()
+			// .normalizeEmail(),
+			.not()
+			.isEmpty()
+			.trim()
+			.escape(),
+		body("link", "Mohon isi data link dengan benar")
+			.not()
+			.isEmpty()
+			.trim()
+			.escape(),
+		sanitizeBody("notifyOnReply").toBoolean()
+	],
+	(req, res) => {
+		const title = req.body.title;
+		const id = req.body.id;
+		const link = req.body.link;
+		const content = req.body.content;
+		// Finds the validation errors in this request and wraps them in an object with handy functions
+		const errors = validationResult(req);
+
+		console.log(errors.array());
+		// !errors.isEmpty()
+		if (errors.array().length > 0) {
+			// return res.status(422).json({ errors: errors.array() });
+			res.render("admin/add_page", {
+				title: req.body.title,
+				content: req.body.content,
+				link: req.body.link,
+				errors: errors.array()
+			});
+		} else {
+			Page.update({_id:id}, {title:title, link:link, content:content}, function(err){
+				if (err) {
+					console.log(err);
+				}else{
+					res.redirect('/');
+				}
+
+			});
+		}
+	}
+ );
 module.exports = router;

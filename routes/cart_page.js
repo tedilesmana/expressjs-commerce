@@ -111,13 +111,13 @@ router.get("/clear", function(req, res) {
 });
 
 router.get("/checkout", function(req, res) {
-	// if (typeof req.user == 'undefined') {
-	// 	res.redirect('/users/page/login');
-	// }
-	console.log(req.session.cart);
-	res.render("public/checkout", {
-		carts: req.session.cart
-	});
+	if (typeof req.user == 'undefined') {
+		res.redirect('/users/page/login');
+	}else{
+		res.render("public/checkout", {
+			carts: req.session.cart
+		});
+	}
 });
 
 router.post(

@@ -18,11 +18,11 @@
           <tr id="id_<%= cat._id %>" class="<%= cat.link %>">
             <td><%= cat._id %></td>
             <td><%= cat.title %></td>
-            <td><a href="/admin/edit-cat/<%= cat._id %>" class="edit">edit</a></td>
+            <td><a href="/admin/categories/edit-cat/<%= cat._id %>" class="edit">edit</a></td>
             <% if (cat.link == "home") { %>
               <td></td>
             <% } else { %>
-              <td><a href="/admin/delete-cat/<%= cat._id %>" class="delete confirmDeletion">delete</a></td>
+              <td><a href="/admin/categories/delete-cat/<%= cat._id %>" class="delete confirmDeletion">delete</a></td>
             <% } %>
           </tr> 
         <% }); %>

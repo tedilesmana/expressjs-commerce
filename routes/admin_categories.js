@@ -108,4 +108,18 @@ router.post(
 		}
 	}
 );
+
+router.get("/edit-cat/:id", function(req, res) {
+	Categori.findById(req.params.id, function(err, categori) {
+		if (err) {
+			return console.log(err);
+		}
+		res.render("admin/edit_categori", {
+			title: categori.title,
+			link: categori.link,
+			id : categori._id
+		});
+	});
+});
+ 
 module.exports = router;

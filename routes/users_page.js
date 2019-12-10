@@ -112,7 +112,7 @@ router.post(
 	}
 );
 
-router.post("/login", function(req, res, next){
+router.post("/userlogin", function(req, res, next){
 	console.log(req.user);
 	passport.authenticate("local", {
 		successRedirect: "/",

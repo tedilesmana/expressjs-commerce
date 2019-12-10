@@ -4,25 +4,17 @@
 <!-- Default form contact -->
 <div class="card m-5">
 
-    <div class="col-md-12 text-center"><h3 class="font-weight-bold mt-4 text-white bg-dark rounded p-3">EDIT PAGE</h3></div>
-    <form class="text-center border border-light p-5" action="/admin/page/update_page" method="post">
-        <a href="/admin/page/pages" class="float-left btn btn-sm btn-success mb-3">Back to all pages</a>
+    <div class="col-md-12 text-center"><h3 class="font-weight-bold mt-4 text-white bg-dark rounded p-3">EDIT CATEGORIES</h3></div>
+    <form class="text-center border border-light p-5" action="/admin/categories/edit_cat" method="post">
+        <a href="/admin/categories" class="float-left btn btn-sm btn-success mb-3">Back to all categories</a>
         <!-- Title -->
         <input type="text" id="defaultContactFormName" class="form-control mb-4" value="<%= title %>" placeholder="Enter Title" name="title">
 
         <!-- Link -->
         <input type="text" id="defaultContactFormEmail" class="form-control mb-4" value="<%= link %>" placeholder="Enter Link" name="link">
-
-        <!-- Message -->
-        <div class="form-group">
-            <textarea id="editor" rows="20" class="form-control rounded-0" id="exampleFormControlTextarea2" row="30" placeholder="Content" name="content"><%= content %></textarea>
-        </div>
-
-        <input type="text" name="id" hidden="" value="<%= id %>">
-
+        
         <!-- Send button -->
         <button class="btn btn-info" type="submit">Send</button>
-        <input type="text" value="<%= id %>" hidden>
 
     </form>
 </div>

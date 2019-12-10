@@ -171,7 +171,7 @@ router.get("/delete-product/:id", function(req, res) {
 				}
 			});
 			req.flash("success", "Product berhasil di hapus");
-			res.redirect("/");
+			res.redirect("/admin/products");
 		}
 	});
 });
